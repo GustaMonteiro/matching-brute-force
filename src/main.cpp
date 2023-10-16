@@ -40,7 +40,7 @@ void printUsage(char *executable)
   exit(-1);
 }
 
-std::map<std::string, std::function<void(int, std::vector<std::vector<int>> &, std::istream&)>> inputModes = {
+std::map<std::string, std::function<void(int, std::vector<std::vector<int>> &, std::istream &)>> inputModes = {
     {"--matrix", matrixModeInput},
     {"--edge", edgeModeInput},
     {"--weight", weightsModeInput}};
@@ -51,6 +51,8 @@ std::map<int, std::string> modeNumberToString = {
     {0, "--matrix"},
     {1, "--edge"},
     {2, "--weight"}};
+
+#define USE_ALL_PERMS 0
 
 int main(int argc, char **argv)
 {
@@ -93,9 +95,13 @@ int main(int argc, char **argv)
 
     inputModes[mode](n, weights, file);
 
+#if USE_ALL_PERMS
     int minCost = findOptimalMatching(weights);
-
     std::cout << "Minimum cost matching is: " << minCost << std::endl;
+#else
+    int minCostDfs = findOptimalMatchingWithDfs(weights);
+    std::cout << "Minimum cost matching with dfs is: " << minCostDfs << std::endl;
+#endif
 
     file.close();
 
@@ -110,9 +116,13 @@ int main(int argc, char **argv)
 
   inputModes[mode](n, weights, std::cin);
 
-  int minCost = findOptimalMatching(weights);
-
-  std::cout << "Minimum cost matching is: " << minCost << std::endl;
+#if USE_ALL_PERMS
+    int minCost = findOptimalMatching(weights);
+    std::cout << "Minimum cost matching is: " << minCost << std::endl;
+#else
+    int minCostDfs = findOptimalMatchingWithDfs(weights);
+    std::cout << "Minimum cost matching with dfs is: " << minCostDfs << std::endl;
+#endif
 
   return 0;
 }
