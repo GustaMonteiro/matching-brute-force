@@ -1,0 +1,1 @@
+const int INF = 1e9; // Valor infinito para inicialização
