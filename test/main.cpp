@@ -33,7 +33,7 @@ int main() {
 
   int numberOfPairs = n / 2;
 
-  std::vector<std::vector<int>> permutations;
+  std::vector<std::vector<int> > permutations;
 
   permutations.push_back(nodes);
 

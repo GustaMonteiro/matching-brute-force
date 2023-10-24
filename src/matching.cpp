@@ -10,7 +10,7 @@
 
 #include "defines.hpp"
 
-std::vector<std::vector<int>> generatePermutations(int n)
+std::vector<std::vector<int> > generatePermutations(int n)
 {
   bool nIsOdd = false;
 
@@ -25,7 +25,7 @@ std::vector<std::vector<int>> generatePermutations(int n)
 
   int numberOfPairs = n / 2;
 
-  std::vector<std::vector<int>> permutations;
+  std::vector<std::vector<int> > permutations;
 
   permutations.push_back(nodes);
 
@@ -71,7 +71,7 @@ std::vector<std::vector<int>> generatePermutations(int n)
   return permutations;
 }
 
-void testPermutation(const std::vector<int> &permutation, int &currentMinCost, std::vector<int> &currentBestPermutation, const std::vector<std::vector<int>> &weights)
+void testPermutation(const std::vector<int> &permutation, int &currentMinCost, std::vector<int> &currentBestPermutation, const std::vector<std::vector<int> > &weights)
 {
   int cost = 0;
   bool validMatching = true;
@@ -102,7 +102,7 @@ long long doubleFatorial(int n)
   return res;
 }
 
-int findOptimalMatching(const std::vector<std::vector<int>> &weights)
+int findOptimalMatching(const std::vector<std::vector<int> > &weights)
 {
   int n = weights.size();
 
@@ -112,7 +112,7 @@ int findOptimalMatching(const std::vector<std::vector<int>> &weights)
 
   if (n < 19)
   {
-    std::vector<std::vector<int>> permutations = generatePermutations(n);
+    std::vector<std::vector<int> > permutations = generatePermutations(n);
     for (auto &permutation : permutations)
       testPermutation(permutation, minCost, bestPermutation, weights);
   }
